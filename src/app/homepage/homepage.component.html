@@ -4,8 +4,8 @@
   <div class="row text-center">
     <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
       <div class="lead">
-        <form [formGroup]="InputForm" (ngSubmit)="onSubmit(InputForm.value)" class="form-group form-group-sm form-group-lg"
-          validate>
+        <form [formGroup]="InputForm" (ngSubmit)="onSubmit(InputForm.value)"
+          class="form-group form-group-sm form-group-lg" validate>
           <div class="input-group input-group-lg">
             <!-- <img src="/assets/calendar.svg" style="width: 4%;margin-right: 10px" /> -->
             <input type="text" formControlName="name" class="form-control" placeholder="Enter Name">
@@ -25,23 +25,37 @@
     </div>
   </div>
 </div>
-<div class="row" *ngFor='let item of data.reverse()' style="width: 80%;margin-bottom: 10px;">
+<div class="row jumbotron" *ngFor='let item of data.reverse();let i=index'
+  style="width: 80%;margin:auto;margin-top: 5px;">
   <div class="col-2 image">
-    <img style="width: 60%" src="/assets/man.svg" />
+    <img style="width: 60%;" src="/assets/man.svg" />
   </div>
   <div class="col">
     <div class="row" style="font-weight: 600">
-      {{item.name}}
+      <p>
+        {{item.name}}
+
+      </p>
     </div>
-<div style="word-break: break-word" class="row">
-{{item.body}}</div>
+    <div class="row">
+      <p>
+        {{item.body}}
+      </p>
+    </div>
   </div>
-  <div >
+  <div class="align-data">
     <p>
-      <i style="color: blue" class="far fa-thumbs-up"></i> {{item.upvote}}
+      <i style="color: blue" class="far fa-thumbs-up" *ngIf='!item.upvoted'
+        (click)='onAction("l",item._id,data.length-1-i)'></i>
+      <i style="color: blue" class="fas fa-thumbs-up" *ngIf='item.upvoted'
+        (click)='onAction("l",item._id,data.length-1-i)'></i>{{item.upvote}}
     </p>
     <p>
-        <i style="color: red" class="far fa-thumbs-down"></i> {{item.downvote}}
-      </p>
+      <i style="color: red" class="far fa-thumbs-down" *ngIf='!item.downvoted'
+        (click)='onAction("d",item._id,data.length-1-i)'></i>
+
+      <i style="color: red" class="fas fa-thumbs-down" *ngIf='item.downvoted'
+        (click)='onAction("d",item._id,data.length-1-i)'></i> {{item.downvote}}
+    </p>
   </div>
 </div>

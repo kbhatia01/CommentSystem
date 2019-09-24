@@ -11,7 +11,7 @@ import { ApiService } from '../Api/api.service';
 export class HomepageComponent implements OnInit {
   hid = true;
   InputForm: FormGroup
-   data = [];
+  data = [];
   constructor(private router: Router, private fb: FormBuilder, private Api: ApiService) {
 
     //form builder
@@ -21,6 +21,13 @@ export class HomepageComponent implements OnInit {
       upvote: new FormControl(0, Validators.required),
       downvote: new FormControl(0, Validators.required)
     });
+
+    for (const item of this.data) {
+      //intially make selected as false;
+      item.upvoted = false;
+      item.downvoted = false;
+
+    }
   }
   ngOnInit() {
     this.Api.getComments().subscribe(resp => {
@@ -29,12 +36,13 @@ export class HomepageComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
+
     if (this.InputForm.invalid) {
       this.hid = false;
     }
     else {
       this.Api.postComments(form).subscribe(resp => {
-
+        this.hid = true;
         console.log(resp);
         this.InputForm.reset()
         this.ngOnInit();
@@ -42,15 +50,40 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  onAction(type,id,index){
-if(type=="l"){
-this.data[index].upvote=this.data[index].upvote+1;
-let m={
-  upvote:this.data[index].upvote+1
-}
-this.Api.patchComments(m,id).subscribe(resp=>{
-  console.log(resp);
-})
-}
+  onAction(type, id, index) {
+    let m;
+    if (this.data[index].downvoted && type == "d" && this.data[index].downvote > 0) {
+      this.data[index].downvote = this.data[index].downvote - 1;
+      m = { downvote: this.data[index].downvote }
+      this.data[index].downvoted = false;
+    }
+    else if (this.data[index].upvoted && type == "l" && this.data[index].upvote > 0) {
+      this.data[index].upvote = this.data[index].upvote - 1;
+      m = { upvote: this.data[index].upvote }
+      this.data[index].upvoted = false;
+    }
+    else if (type == "l") {
+      this.data[index].upvote = this.data[index].upvote + 1;
+      if (this.data[index].downvoted && this.data[index].downvote > 0) {
+        this.data[index].downvote = this.data[index].downvote - 1;
+        this.data[index].downvoted = false
+      }
+      m = { upvote: this.data[index].upvote, downvote: this.data[index].downvote }
+
+      this.data[index].upvoted = true;
+    }
+    else if (type == "d") {
+      this.data[index].downvote = this.data[index].downvote + 1;
+      if (this.data[index].upvoted && this.data[index].upvote > 0) {
+        this.data[index].upvote = this.data[index].upvote - 1;
+        this.data[index].upvoted = false
+      } m = { upvote: this.data[index].upvote, downvote: this.data[index].downvote }
+
+      this.data[index].downvoted = true;
+    }
+    if (m != null)
+      this.Api.patchComments(m, id).subscribe(resp => {
+        console.log(resp);
+      })
   }
 }

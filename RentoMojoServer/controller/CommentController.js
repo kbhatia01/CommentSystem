@@ -10,13 +10,10 @@ module.exports = function commentController(cmnt) {
                 const coment = req.cmnt;
                 // console.log(req);
 
-                if (req.body._id) {
-                    delete req.body._id;
-                }
                 Object.entries(req.body).forEach((element) => {
                     const key = element[0];
                     const value = element[1];
-                    cmnt[key] = value;
+                    coment[key] = value;
 
                 })
                 coment.save((err) => {

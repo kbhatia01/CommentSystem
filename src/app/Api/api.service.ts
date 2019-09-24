@@ -37,7 +37,7 @@ export class ApiService {
 
   patchComments(m,id){
 
-    return this.http.patch(m,environment.api+id,this.options).map((res: any) => {
+    return this.http.patch(environment.api+id,m,this.options).map((res: any) => {
       return res.json();
     });
   }
