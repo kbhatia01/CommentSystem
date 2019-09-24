@@ -16,8 +16,8 @@ export class HomepageComponent implements OnInit {
 
     //form builder
     this.InputForm = this.fb.group({
-      name: new FormControl("", Validators.required),
-      body: new FormControl("", Validators.required),
+      name: new FormControl(null, Validators.required),
+      body: new FormControl(null, Validators.required),
       upvote: new FormControl(0, Validators.required),
       downvote: new FormControl(0, Validators.required)
     });
@@ -37,7 +37,7 @@ export class HomepageComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
 
-    if (this.InputForm.invalid) {
+    if (this.InputForm.get('name').value==null || this.InputForm.get('body').value==null) {
       this.hid = false;
     }
     else {
