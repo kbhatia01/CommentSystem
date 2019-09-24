@@ -5,7 +5,7 @@
 2) npm install
 3) node app.js
  
-# Now rum another command promt to run UI
+# Now run another command promt to run UI
 
 1) go to main folder
 2) npm install

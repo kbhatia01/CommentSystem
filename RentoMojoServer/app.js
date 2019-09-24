@@ -8,7 +8,10 @@ const dp = mongoose.connect('mongodb://localhost/api');
 const port = process.env.PORT || 4100;
 const comment = require('./model/CommentSchema')
 const router = require("./routes/commentRoute")(comment);
+const cors = require('cors');
 
+
+app.use(cors());
 
 app.use('/api', router);
 

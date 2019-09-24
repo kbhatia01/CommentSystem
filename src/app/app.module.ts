@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { Http, HttpModule } from '@angular/http';
 import { ApiService } from './Api/api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -20,7 +20,7 @@ import { HomepageComponent } from './homepage/homepage.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule,HttpModule,
     ReactiveFormsModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
