@@ -1,0 +1,48 @@
+<div class="text-center">
+  <h1><img src="/assets/chat.svg" class="image" /></h1>
+
+  <div class="row text-center">
+    <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
+      <div class="lead">
+        <form [formGroup]="InputForm" (ngSubmit)="onSubmit(InputForm)" class="form-group form-group-sm form-group-lg"
+          validate>
+          <div class="input-group input-group-lg">
+            <!-- <img src="/assets/calendar.svg" style="width: 4%;margin-right: 10px" /> -->
+            <input type="text" formControlName="name" class="form-control" placeholder="Enter Name">
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <!-- <img src="/assets/calendar.svg" style="width: 4%;margin-right: 10px" /> -->
+            <textarea type="text" formControlName="body" class="form-control" placeholder="Enter comment">
+              </textarea>
+          </div>
+          <p style="color: red" [hidden]="hid">Please enter the data to proceed further</p>
+          <div style="margin-top: 2%">
+            <button class="btn btn-success">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="width: 80%">
+  <div class="col-2 image">
+    <img style="width: 60%" src="/assets/man.svg" />
+  </div>
+  <div class="col">
+    <div class="row" style="font-weight: 600">
+      Name
+    </div>
+<div style="word-break: break-word" class="row">
+comment.......................... hey abhayb nk,nknknk,bk,k,bkbkbklklbklnknkn
+</div>
+  </div>
+  <div >
+    <p>
+      <i style="color: blue" class="far fa-thumbs-up"></i> 4
+    </p>
+    <p>
+        <i style="color: red" class="far fa-thumbs-down"></i> 6
+      </p>
+  </div>
+</div>
