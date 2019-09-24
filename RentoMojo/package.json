@@ -1,0 +1,39 @@
+{
+  "name": "comments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "lint": "eslint .",
+    "test": "mocha test/**/*Testing.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mocha": "^6.2.0",
+    "mongoose": "^5.7.1",
+    "nodemon": "^1.19.2",
+    "should": "^13.2.3",
+    "sinon": "^7.4.2",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0"
+  },
+  "nodemonConfig": {
+    "name": "nodemon",
+    "homepage": "http://nodemon.io",
+    "...": "... other standard package.json values",
+    "nodemonConfig": {
+      "ignore": [
+        "test/*",
+        "docs/*"
+      ],
+      "delay": "2500"
+    }
+  }
+}
